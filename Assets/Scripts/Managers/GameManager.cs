@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private LevelTimer levelTimer;
     [SerializeField]
-    private PlayerScore playerScore;
+    public PlayerScore playerScore;
+    [SerializeField]
+    public PlayerStats playerStats;
     [SerializeField]
     private GameState gameState;
 
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI gameStateText;
+    public TextMeshProUGUI playerVidaText;
 
     private void Awake()
     {
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         levelTimer.RestartTimer(false);
+        playerStats.DesactivarShield();
     }
 
     private void Update()
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = playerScore.actualScore.ToString();
         highscoreText.text = playerScore.highScore.ToString();
         gameStateText.text = gameState.currentState.ToString();
+        playerVidaText.text = playerStats.vidasActuales.ToString();
     }
 
 }
