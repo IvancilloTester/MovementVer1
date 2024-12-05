@@ -15,12 +15,6 @@ public class PetController : MonoBehaviour
         Controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnMove(InputValue value) { 
         moveInput = value.Get<Vector2>();
     }
@@ -28,6 +22,7 @@ public class PetController : MonoBehaviour
     private void FixedUpdate()
     {
         movement.x = moveInput.x * speed;
+        movement.z = moveInput.y * speed;
         Controller.Move(movement * Time.fixedDeltaTime);
     }
 }
