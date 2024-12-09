@@ -3,9 +3,32 @@ using UnityEngine.SceneManagement;
 
 public class IVANPauseMenu : MonoBehaviour
 {
+
+    private bool isPaused;
+
     [SerializeField] private GameObject PauseButton;
 
     [SerializeField] private GameObject PauseMenu;
+
+    
+    public void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            if(isPaused)
+            {
+                Resume();
+
+            }
+            else
+            {
+
+                Pause();
+            }
+
+        }
+
+    }
 
     public void Pause()
     {
