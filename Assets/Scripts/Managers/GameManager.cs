@@ -13,14 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public PlayerStats playerStats;
     [SerializeField]
+    public HUDCanvas hudCanvas;
+    [SerializeField]
     private GameState gameState;
 
     //UI
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highscoreText;
-    public TextMeshProUGUI gameStateText;
-    public TextMeshProUGUI playerVidaText;
+
+
 
     private void Awake()
     {
@@ -46,11 +45,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //MUY HORRIBLE, PERO SOLO PARA PROBAR
-        timerText.text = levelTimer.FloatToTimeFormat();
-        scoreText.text = playerScore.actualScore.ToString();
-        highscoreText.text = playerScore.highScore.ToString();
-        gameStateText.text = gameState.currentState.ToString();
-        playerVidaText.text = playerStats.vidasActuales.ToString();
+
     }
 
 }

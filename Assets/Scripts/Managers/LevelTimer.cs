@@ -42,6 +42,8 @@ public class LevelTimer : MonoBehaviour
         {
             isRunning = true;
         }
+
+        GameManager.instance.hudCanvas.UpdateTimerTEXT(timePassed);
         
     }
     private void AddTime()
@@ -53,11 +55,7 @@ public class LevelTimer : MonoBehaviour
             timePassed += Time.deltaTime;
             //Debug.Log($"Timer: {timePassed}");
         }
+        GameManager.instance.hudCanvas.UpdateTimerTEXT(timePassed);
     }
 
-    public string FloatToTimeFormat()
-    {
-        var ts = TimeSpan.FromSeconds(timePassed);
-        return string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
-    }
 }
