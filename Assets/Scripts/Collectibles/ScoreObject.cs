@@ -5,16 +5,12 @@ public class ScoreObject : MonoBehaviour
 
     //VALORES DEL SCORE
     [SerializeField]
-    private int scoreValue;
+    private float scoreValue;
 
-    private void Awake()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.instance.playerScore.AddScore(scoreValue);
+        GameManager.instance.levelTimer.RemoveTime(scoreValue);
         this.gameObject.SetActive(false);
     }
 

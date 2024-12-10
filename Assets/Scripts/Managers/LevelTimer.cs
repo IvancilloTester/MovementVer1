@@ -58,4 +58,9 @@ public class LevelTimer : MonoBehaviour
         GameManager.instance.hudCanvas.UpdateTimerTEXT(timePassed);
     }
 
+    public void RemoveTime(float _time)
+    {
+        timePassed -= _time;
+    }
+
 }

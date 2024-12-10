@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     //Componentes
     [SerializeField]
-    private LevelTimer levelTimer;
+    public LevelTimer levelTimer;
     [SerializeField]
     public PlayerScore playerScore;
     [SerializeField]
@@ -16,8 +18,14 @@ public class GameManager : MonoBehaviour
     public HUDCanvas hudCanvas;
     [SerializeField]
     private GameState gameState;
+    [SerializeField]
+    public PetController petController;
 
-    //UI
+
+    //CHECKPOINTS
+    public Transform playerSpawn;
+    public List<CheckpointObject> checkpointsList;
+    public CheckpointObject currentCheckpoint;
 
 
 
@@ -40,12 +48,34 @@ public class GameManager : MonoBehaviour
     {
         levelTimer.RestartTimer(false);
         playerStats.DesactivarShield();
+        petController.transform.position = playerSpawn.position;
+
     }
 
-    private void Update()
+    public void ChangeCheckpoint(CheckpointObject _newCheckpoint)
     {
-        //MUY HORRIBLE, PERO SOLO PARA PROBAR
+        //SI YA SE HA ACTIVADO UN CHECKPOINT ANTES
+        if (currentCheckpoint!=null)
+        {
+            FindCheckpointInList(currentCheckpoint).ReleaseCheckpoint();
+        }
+        FindCheckpointInList(_newCheckpoint).ClaimCheckpoint();
+        currentCheckpoint = _newCheckpoint;
 
     }
+
+    public CheckpointObject FindCheckpointInList(CheckpointObject _newCheckpoint)
+    {
+        foreach(CheckpointObject _checkpoint in checkpointsList)
+        {
+            if (_newCheckpoint == _checkpoint)
+            {
+                return _checkpoint;
+            }
+        }
+        return null;
+    }
+
+
 
 }

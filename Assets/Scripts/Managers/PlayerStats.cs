@@ -37,6 +37,23 @@ public class PlayerStats : MonoBehaviour
             return;
         }
         CambiarVidas(-_vidas);
+        MovePlayerToCheckpoint();
+    }
+
+    private void MovePlayerToCheckpoint()
+    {
+        Vector3 _newPosition;
+        if (!GameManager.instance.currentCheckpoint)
+        {
+            _newPosition = GameManager.instance.playerSpawn.transform.position;
+        }
+        else
+        {
+            _newPosition = GameManager.instance.currentCheckpoint.transform.position;
+        }
+
+        GameManager.instance.petController.transform.position = _newPosition;
+
     }
 
     private void CambiarVidas(int _amount)
