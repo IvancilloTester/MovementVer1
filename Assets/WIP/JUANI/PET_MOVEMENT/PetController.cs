@@ -21,6 +21,9 @@ public class PetController : MonoBehaviour
     private bool isGrounded;
     public bool IsJumping = false;
 
+    public float stamina = 5;
+    float rechargestamina = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,14 +32,28 @@ public class PetController : MonoBehaviour
     }
 
     void Update() {
-
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            speed = 1.5f;
+            stamina -= Time.deltaTime;
+            if (stamina < 0) {
+                speed = 0.5f;
+                rechargestamina += Time.deltaTime;
+                if (rechargestamina > 5) { 
+                    stamina = 5;
+                    rechargestamina = 0;
+                }
+            }
+        }
+        else {
+            speed = 0.5f;
+        }
         isGrounded = Controller.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
             if (IsJumping)
             {
                 IsJumping = false; 
-                animator.SetBool("IsJumping", false); // Actualiza el Animator al aterrizar
+                animator.SetBool("IsJumping", false);
             }
             velocity.y = -2f;
         }
