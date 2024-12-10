@@ -9,6 +9,7 @@ public class LifeObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.instance.playerStats.AddVidas(lifeValue);
+        GameManager.instance.hudCanvas.popup.ShowPopup($"+{lifeValue} vida", "life");
         this.gameObject.SetActive(false);
     }
 }

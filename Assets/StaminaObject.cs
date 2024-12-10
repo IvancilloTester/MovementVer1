@@ -8,6 +8,7 @@ public class StaminaObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.instance.playerStats.AddStamina(staminaValue);
+        GameManager.instance.hudCanvas.popup.ShowPopup($"+{staminaValue} stamina", "stamina");
         this.gameObject.SetActive(false);
     }
 }

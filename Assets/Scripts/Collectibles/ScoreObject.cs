@@ -11,6 +11,7 @@ public class ScoreObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.instance.levelTimer.RemoveTime(scoreValue);
+        GameManager.instance.hudCanvas.popup.ShowPopup($"-{scoreValue} segundos", "time");
         this.gameObject.SetActive(false);
     }
 

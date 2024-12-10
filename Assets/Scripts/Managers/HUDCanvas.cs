@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HUDCanvas : MonoBehaviour
 {
-
+    public FeedbackPopup popup;
     public TextMeshProUGUI timerText;
     public GameObject shieldIconFill;
     public Image staminaIconFill;
