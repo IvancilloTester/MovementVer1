@@ -33,12 +33,12 @@ public class PetController : MonoBehaviour
         isGrounded = Controller.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
             if (IsJumping)
             {
                 IsJumping = false; 
                 animator.SetBool("IsJumping", false); // Actualiza el Animator al aterrizar
             }
+            velocity.y = -2f;
         }
         animator.SetBool("IsWalking", false);
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -54,18 +54,19 @@ public class PetController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             Controller.Move(moveDir.normalized * speed * Time.fixedDeltaTime);
         }
-        velocity.y += gravity * Time.deltaTime * 2;
-        Controller.Move(velocity * Time.deltaTime);
         if (!IsJumping && !isGrounded)
         {
             IsJumping = true;
             animator.SetBool("IsJumping", true); // Actualiza el Animator al saltar
         }
+        velocity.y += gravity * Time.deltaTime;
+        Controller.Move(velocity * Time.deltaTime);
     } 
 
     void OnJump() { 
         if (isGrounded) {
-            //IsJumping = true;
+            IsJumping = true;
+            animator.SetBool("IsJumping", true);
             velocity.y = Mathf.Sqrt(jumpspeed * -0.2f * gravity);
         }
     }
