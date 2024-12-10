@@ -12,7 +12,7 @@ public class IVANTitleScreenScript : MonoBehaviour
     public void Quit()
 
     {
-        Debug.Log("Exiting...");
+        Debug.Log("Saliendo del juego...");
         Application.Quit();
     
     }

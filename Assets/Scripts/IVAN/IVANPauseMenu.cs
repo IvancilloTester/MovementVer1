@@ -27,6 +27,11 @@ public class IVANPauseMenu : MonoBehaviour
             }
 
         }
+        if(Input.GetKey(KeyCode.R))
+        {
+
+            Restart();
+        }
 
     }
 
@@ -49,5 +54,13 @@ public class IVANPauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
+    }
+
+    public void Restart()
+    {
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Reiniciando nivel");
     }
 }
