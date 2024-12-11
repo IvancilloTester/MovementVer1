@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/WIP/IVAN.unity
     guid: ec382c9b249ceb74a9af909751a04750
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/WIP/PIETRO.unity
+    guid: c0354afd51351914cacb5db8037f01b4
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
