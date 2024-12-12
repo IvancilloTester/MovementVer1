@@ -12,6 +12,7 @@ public class HUDCanvas : MonoBehaviour
     public GameObject shieldIconFill;
     public Image staminaIconFill;
     public Color colorVidas;
+    public TextMeshProUGUI huesitosTXT;
 
     public List<Image> livesIMGs;
 
@@ -23,6 +24,11 @@ public class HUDCanvas : MonoBehaviour
     public void UpdateTimerTEXT(float _time)
     {
         timerText.text = FloatToTimeFormat(_time);
+    }
+
+    public void UpdateHuesitosTEXT(int _huesitos)
+    {
+        huesitosTXT.text = $"x{_huesitos}";
     }
 
     public void UpdateStaminaFill(float _actual, float _max)

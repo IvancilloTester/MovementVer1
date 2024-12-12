@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
     public float staminaMax;
 
     [SerializeField]
+    public int huesitosActuales;
+
+    [SerializeField]
     private bool shieldActive;
 
     public GameObject shieldOBJ;
@@ -21,6 +24,7 @@ public class PlayerStats : MonoBehaviour
     {
         SetVidas(7);
         AddStamina(staminaMax);
+        SetHuesitos(0);
     }
 
     //VIDAS
@@ -55,6 +59,7 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.petController.transform.position = _newPosition;
 
     }
+
 
     private void CambiarVidas(int _amount)
     {
@@ -101,6 +106,29 @@ public class PlayerStats : MonoBehaviour
         shieldActive= _active;
         shieldOBJ.SetActive(_active);
         GameManager.instance.hudCanvas.ToggleShieldIcon(_active);
+    }
+
+    //HUESITOS
+    public void AddHuesitos(int _amount)
+    {
+        CambiarHuesitos(_amount);
+    }
+
+    public void RemoveHuesitos(int _amount)
+    {
+        CambiarHuesitos(-_amount);
+    }
+
+    private void CambiarHuesitos(int _amount)
+    {
+        huesitosActuales += _amount;
+        GameManager.instance.hudCanvas.UpdateHuesitosTEXT(huesitosActuales);
+    }
+
+    private void SetHuesitos(int _amount)
+    {
+        huesitosActuales = _amount;
+        GameManager.instance.hudCanvas.UpdateHuesitosTEXT(huesitosActuales);
     }
 
 }

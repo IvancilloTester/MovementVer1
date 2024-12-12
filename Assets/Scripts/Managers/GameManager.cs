@@ -57,25 +57,11 @@ public class GameManager : MonoBehaviour
         //SI YA SE HA ACTIVADO UN CHECKPOINT ANTES
         if (currentCheckpoint!=null)
         {
-            FindCheckpointInList(currentCheckpoint).ReleaseCheckpoint();
+            currentCheckpoint.ReleaseCheckpoint();
         }
-        FindCheckpointInList(_newCheckpoint).ClaimCheckpoint();
         currentCheckpoint = _newCheckpoint;
+        currentCheckpoint.ClaimCheckpoint();
 
     }
-
-    public CheckpointObject FindCheckpointInList(CheckpointObject _newCheckpoint)
-    {
-        foreach(CheckpointObject _checkpoint in checkpointsList)
-        {
-            if (_newCheckpoint == _checkpoint)
-            {
-                return _checkpoint;
-            }
-        }
-        return null;
-    }
-
-
 
 }

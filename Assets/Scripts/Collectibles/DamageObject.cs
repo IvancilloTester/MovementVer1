@@ -9,7 +9,11 @@ public class DamageObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.instance.playerStats.RemoveVidas(damageValue);
-        this.gameObject.SetActive(false);
+        if (other.GetComponent<CharacterController>() != null)
+        {
+            GameManager.instance.playerStats.RemoveVidas(damageValue);
+            this.gameObject.SetActive(false);
+        }
+
     }
 }
