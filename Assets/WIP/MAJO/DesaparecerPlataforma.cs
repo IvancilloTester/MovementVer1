@@ -31,10 +31,12 @@ public class DesaparecerPlataforma : MonoBehaviour
         meshRenderer.enabled = true; // Nos aseguramos de que sea visible antes de desaparecer
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+
+        if (other.gameObject.CompareTag("Player"))
         {
+
             InvokeRepeating(nameof(Blinking), 0f, blinkingInterval); // Se empieza el parpadeo llamando repetidamente la funcion Blinking desde el inicio en intervalors de blinkingInterval segundos.
             Invoke(nameof(StopBlinking), blinkingTime); // Se detiene el parpadeo despues de cierto tiempo (blinkingTime).
             Invoke(nameof(PlatformDisappears), timeToDestroy); // La plataforma desaparece despues de cierto tiempo (timeToDestroy), ocurre al mismo tiempo que el parpadeo
