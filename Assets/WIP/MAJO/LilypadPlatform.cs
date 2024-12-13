@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DesaparecerPlataforma : MonoBehaviour
+public class LilypadPlatform : MonoBehaviour
 {
 
     public float timeToDestroy = 3f;// Tiempo que tiene el jugador antes de que la plataforma desaparezca, debe ser mayor al tiempo del parpadeo
@@ -8,6 +8,8 @@ public class DesaparecerPlataforma : MonoBehaviour
     public float blinkingInterval = 0.5f; // Intervalo de tiempo en el que se repite el parpadeo
     public float blinkingTime = 2.5f; // Tiempo del parpadeo
 
+
+    private bool isBlinking = false;
     private MeshRenderer meshRenderer;
     private Collider platformCollider;
 
@@ -15,7 +17,7 @@ public class DesaparecerPlataforma : MonoBehaviour
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        platformCollider = GetComponent<Collider>();
+        platformCollider = GetComponent<MeshCollider>();
     }
 
     // Hace la plataforma visible e invisible para simular un parpadeo
@@ -33,10 +35,10 @@ public class DesaparecerPlataforma : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log("TRIGGER");
+        if (other.gameObject.CompareTag("Player") &!isBlinking)
         {
-
+            isBlinking = true;
             InvokeRepeating(nameof(Blinking), 0f, blinkingInterval); // Se empieza el parpadeo llamando repetidamente la funcion Blinking desde el inicio en intervalors de blinkingInterval segundos.
             Invoke(nameof(StopBlinking), blinkingTime); // Se detiene el parpadeo despues de cierto tiempo (blinkingTime).
             Invoke(nameof(PlatformDisappears), timeToDestroy); // La plataforma desaparece despues de cierto tiempo (timeToDestroy), ocurre al mismo tiempo que el parpadeo
@@ -56,6 +58,7 @@ public class DesaparecerPlataforma : MonoBehaviour
     // Reactiva el mesh renderer y el collider de la plataforma.
     void PlatformAppears()
     {
+        isBlinking = false;
         meshRenderer.enabled = true;
         platformCollider.enabled = true;
     }

@@ -7,7 +7,7 @@ public class TriggerDoor : MonoBehaviour
     public Transform leftDoor;
     public float openDistance = 3f; // Distancia que se moveran las puertas al abrirse
     public float speed = 2f; // Velocidad del movimiento.
-
+    public string axis = "x";
 
 
     private Vector3 openRightPosition; // Posición a la que se abrirá la puerta derecha.
@@ -23,8 +23,19 @@ public class TriggerDoor : MonoBehaviour
         closedLeftPosition = leftDoor.position;
         closedRightPosition = rightDoor.position;
 
-        openLeftPosition = closedLeftPosition + new Vector3(-openDistance, 0, 0);
-        openRightPosition = closedRightPosition + new Vector3(openDistance, 0, 0);
+        if (axis.ToLower() == "x")
+        {
+            openLeftPosition = closedLeftPosition + new Vector3(-openDistance, 0, 0);
+            openRightPosition = closedRightPosition + new Vector3(openDistance, 0, 0);
+        } else if (axis.ToLower() == "y")
+        {
+            openLeftPosition = closedLeftPosition + new Vector3(0, -openDistance, 0);
+            openRightPosition = closedRightPosition + new Vector3(0, openDistance, 0);
+        } else
+        {
+            openLeftPosition = closedLeftPosition + new Vector3(0, 0, -openDistance);
+            openRightPosition = closedRightPosition + new Vector3(0, 0, openDistance);
+        }
     }
 
     void Update()
