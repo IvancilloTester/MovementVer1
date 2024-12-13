@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class LilypadPlatform : MonoBehaviour
 {
+    [Header("Platform Timers")]
+    [SerializeField]
+    private float timeToDestroy = 3f;// Tiempo que tiene el jugador antes de que la plataforma desaparezca, debe ser mayor al tiempo del parpadeo
+    [SerializeField]
+    private float timeToReappear = 4f;// Tiempo que tarda la plataforma en reaparecer
+    [SerializeField]
 
-    public float timeToDestroy = 3f;// Tiempo que tiene el jugador antes de que la plataforma desaparezca, debe ser mayor al tiempo del parpadeo
-    public float timeToReappear = 4f;// Tiempo que tarda la plataforma en reaparecer
-    public float blinkingInterval = 0.5f; // Intervalo de tiempo en el que se repite el parpadeo
-    public float blinkingTime = 2.5f; // Tiempo del parpadeo
+    [Header("Blinking Timers")]
+    private float blinkingInterval = 0.5f; // Intervalo de tiempo en el que se repite el parpadeo
+    [SerializeField]
+    private float blinkingTime = 2.5f; // Tiempo del parpadeo
 
 
     private bool isBlinking = false;

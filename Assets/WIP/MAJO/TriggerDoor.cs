@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class TriggerDoor : MonoBehaviour
 {
+    [Header("Doors Game Objects")]
+    [SerializeField]
+    private Transform rightDoor;
+    [SerializeField]
+    private Transform leftDoor;
 
-    public Transform rightDoor;
-    public Transform leftDoor;
-    public float openDistance = 3f; // Distancia que se moveran las puertas al abrirse
-    public float speed = 2f; // Velocidad del movimiento.
-    public string axis = "x";
+    [Header("Movement options")]
+    [SerializeField]
+    private float openDistance = 3f; // Distancia que se moveran las puertas al abrirse
+    [SerializeField]
+    private float speed = 2f; // Velocidad del movimiento.
+    [SerializeField]
+    private string axis = "x";
 
 
     private Vector3 openRightPosition; // Posición a la que se abrirá la puerta derecha.
