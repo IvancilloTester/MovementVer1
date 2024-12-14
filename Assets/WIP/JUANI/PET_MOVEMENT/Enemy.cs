@@ -14,6 +14,10 @@ public class Enemy : MonoBehaviour
 
     public Transform Target;
     public float distancia;
+    public float waitTime = 2.0f;
+
+    //[SerializeField]
+    //private int damageValue;
 
     private void Awake() {
         if (AutoSelectTarget)
@@ -23,9 +27,9 @@ public class Enemy : MonoBehaviour
         StartCoroutine(CalcularDistancia());
     }
 
-    void Update() { 
-        Animate(); 
-    }
+    //void Update() {
+    //    Animate();
+    //}
     private void LateUpdate() {
         CheckEstado();
     }
@@ -34,13 +38,13 @@ public class Enemy : MonoBehaviour
         switch (e)
         {
             case Estados.idle:
-                
+
                 break;
             case Estados.distraido:
-                
+
                 break;
             case Estados.muerto:
-                
+
                 break;
             default:
                 break;
@@ -65,17 +69,32 @@ public class Enemy : MonoBehaviour
     }
 
     public virtual void IdleEstado() {
+        animator.SetInteger("Cambios", (int)estado);
         if (distancia < distanciaVer) {
             CambioEstado(Estados.muerto);
         }
     }
 
     public virtual void DistraidoEstado() {
+        animator.SetInteger("Cambios", (int)estado);
 
     }
 
     public virtual void MuertoEstado() {
+        animator.SetInteger("Cambios", (int)estado);
+        StartCoroutine(MuertoEstado2());
+    }
 
+    private IEnumerator MuertoEstado2() {
+        yield return StartCoroutine(Esperar());
+        GameManager.instance.playerStats.RemoveVidas(1);
+        CambioEstado(Estados.idle);
+    }
+
+
+
+    IEnumerator Esperar() {
+        yield return new WaitForSeconds(waitTime);
     }
 
     IEnumerator CalcularDistancia() {
@@ -94,9 +113,9 @@ public class Enemy : MonoBehaviour
     }
 #endif
 
-    private void Animate() { 
-        animator.SetInteger("Cambios", (int)estado);
-    }
+    //private void Animate() { 
+    //    animator.SetInteger("Cambios", (int)estado);
+    //}
 }
 
 public enum Estados { 

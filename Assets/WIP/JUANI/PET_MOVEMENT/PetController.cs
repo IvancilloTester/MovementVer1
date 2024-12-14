@@ -15,7 +15,9 @@ public class PetController : MonoBehaviour
 
     /* Inicializa las variables para controlar 
        el movimiento del personaje */
-    public float speed = 0.5f;
+    public float speed = 1.0f;
+    public float runspeed = 4.0f;
+    public float normalspeed = 1.0f;
     public float smoothingTime = 0.3f;
     float smoothingVelocity, horizontal, vertical;
     float targetAngle, angle;
@@ -30,33 +32,37 @@ public class PetController : MonoBehaviour
     /* Inicializa las variables para controlar 
        la stamina del personaje */
     public float stamina = 5;
-    float rechargestamina = 0;
+    public float rechargestamina = 0;
 
     void Update() {
 
-        //PLAYERPARENT = AMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT;
+        //PLAYERPARENT = GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT;
         //TRIGGER ENTER
         //GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT = PLATAFORMA.TRANSFORM
         //TRIGGER EXIT
         //GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT = PLAYERPARENT;
 
         /* El personaje corre si se presiona Shift Izquierdo */
+        if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift)) {
+            stamina += Time.deltaTime;
+            if (stamina > 5) {
+                stamina = 5;
+                //rechargestamina = 0;
+            }
+        }
+        
         if (Input.GetKey(KeyCode.LeftShift)) {
-            speed = 1.5f;
+            speed = runspeed;
             stamina -= Time.deltaTime;
             GameManager.instance.playerStats.SetStamina(stamina);
             /* Si se acaba la stamina, deja de correr 
                y se empieza a recargar */
-            if (stamina < 0) {
-                speed = 0.5f;
-                rechargestamina += Time.deltaTime;
-                if (rechargestamina > 5) {
-                    stamina = 5;
-                    rechargestamina = 0;
-                }
+            if (stamina <= 0) {
+                speed = normalspeed;
+                stamina = 0;
             }
         } else {
-            speed = 0.5f;
+            speed = normalspeed;
         }
         /* Si el personaje está en el piso, puede saltar
            y se decide la animación a realizar */
