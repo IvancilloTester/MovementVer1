@@ -23532,6 +23532,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1492832626810165369, guid: 4b33d1a8f02c0714ba8d4abf2eea416d, type: 3}
+      propertyPath: vidasMax
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492832626810165369, guid: 4b33d1a8f02c0714ba8d4abf2eea416d, type: 3}
       propertyPath: shieldOBJ
       value: 
       objectReference: {fileID: 1046095455}

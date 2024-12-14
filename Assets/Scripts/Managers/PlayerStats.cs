@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
     //VARIABLES
     [SerializeField]
     public int vidasActuales;
+    public int vidasMax;
     [SerializeField]
     public float staminaActual;
     [SerializeField]
@@ -22,7 +23,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        SetVidas(7);
+        SetVidas(vidasMax);
         AddStamina(staminaMax);
         SetHuesitos(0);
     }
@@ -30,6 +31,7 @@ public class PlayerStats : MonoBehaviour
     //VIDAS
     public void AddVidas(int _vidas)
     {
+
         CambiarVidas(_vidas);
     }
 
@@ -70,6 +72,10 @@ public class PlayerStats : MonoBehaviour
     private void CambiarVidas(int _amount)
     {
         vidasActuales+= _amount;
+        if (vidasActuales > vidasMax)
+        {
+            vidasActuales = vidasMax;
+        }
         GameManager.instance.hudCanvas.UpdateVidas(vidasActuales);
     }
 
