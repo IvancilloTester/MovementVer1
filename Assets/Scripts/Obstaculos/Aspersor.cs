@@ -23,10 +23,7 @@ public class Aspersor : MonoBehaviour
     void Start()
     {
         Prender();
-        intervaloDisparos = 1f;
     }
-
-
 
 
     IEnumerator ActivarDisparos()

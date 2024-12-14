@@ -46,17 +46,23 @@ public class PlayerStats : MonoBehaviour
 
     private void MovePlayerToCheckpoint()
     {
+
         Vector3 _newPosition;
         if (!GameManager.instance.currentCheckpoint)
         {
             _newPosition = GameManager.instance.playerSpawn.transform.position;
+            Debug.Log("AL INICIO");
         }
         else
         {
             _newPosition = GameManager.instance.currentCheckpoint.transform.position;
+            Debug.Log("AL CHECKPOINT");
         }
 
-        GameManager.instance.petController.transform.position = _newPosition;
+
+        GameManager.instance.petController.Teleport(_newPosition);
+        Debug.Log(GameManager.instance.petController.transform.position);
+
 
     }
 
@@ -85,10 +91,17 @@ public class PlayerStats : MonoBehaviour
         CambiarStamina(-_amount);
     }
 
-    private void CambiarStamina(float _amount)
+    public void CambiarStamina(float _amount)
     {
         staminaActual += _amount;
         GameManager.instance.hudCanvas.UpdateStaminaFill(staminaActual,staminaMax);
+        GameManager.instance.petController.stamina=staminaActual;
+    }
+
+    public void SetStamina(float _amount)
+    {
+        staminaActual = _amount;
+        GameManager.instance.hudCanvas.UpdateStaminaFill(staminaMax, staminaActual);
     }
 
     //ESCUDO

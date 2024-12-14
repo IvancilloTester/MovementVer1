@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+using UnityEngine.Splines;
+
 [RequireComponent(typeof(CharacterController))]
 public class PetController : MonoBehaviour
 {
@@ -31,10 +33,18 @@ public class PetController : MonoBehaviour
     float rechargestamina = 0;
 
     void Update() {
+
+        //PLAYERPARENT = AMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT;
+        //TRIGGER ENTER
+        //GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT = PLATAFORMA.TRANSFORM
+        //TRIGGER EXIT
+        //GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT = PLAYERPARENT;
+
         /* El personaje corre si se presiona Shift Izquierdo */
         if (Input.GetKey(KeyCode.LeftShift)) {
             speed = 1.5f;
             stamina -= Time.deltaTime;
+            GameManager.instance.playerStats.SetStamina(stamina);
             /* Si se acaba la stamina, deja de correr 
                y se empieza a recargar */
             if (stamina < 0) {
@@ -93,4 +103,14 @@ public class PetController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpspeed * -0.2f * gravity);
         }
     }
+
+    public void Teleport(Vector3 _newPos)
+    {
+        Controller.enabled = false; // Disable to avoid conflicts
+        transform.position = _newPos;
+        Controller.enabled = true;  // Re-enable the controller
+    }
+
+    
+
 }
