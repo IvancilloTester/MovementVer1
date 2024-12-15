@@ -3,10 +3,13 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField]
-    private WaypointPath _waypointPath;
+    private WaypointPath _waypointPath; // Objeto que contiene el camino que seguira la plataforma
 
     [SerializeField]
-    private float _speed;
+    private float _speed; // Velocidad a la cual se movera la plataforma
+
+    //Guardamos la instancia del objeto padre del player en caso de que exista uno
+    private Transform playerParent = GameManager.instance.petController.transform.parent;
 
     private int _targetWaypointIndex;
 
@@ -24,7 +27,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         _elapsedTime += Time.deltaTime; // Va actualizando el tiempo recorrido
 
@@ -55,6 +58,24 @@ public class MovingPlatform : MonoBehaviour
 
 
 
+    }
+
+    // Si el jugador esta encima de la plataforma, este se hace hijo de la plataforma para poder moverse con ella
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.petController.transform.SetParent(transform);
+        }
+    }
+
+    // Si el jugador ya no se encuentra en la plataforma, se hace hijo de su anterior padre (en caso de que exista uno)
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.petController.transform.SetParent(playerParent);
+        }
     }
 
 }
