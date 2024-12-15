@@ -117,10 +117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5139159019399175011}
-  - component: {fileID: 7115135458508361374}
   - component: {fileID: 3862815349516364939}
+  - component: {fileID: 6331847433797340589}
   m_Layer: 0
-  m_Name: BotonPuertas
+  m_Name: BotonTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,23 +142,6 @@ Transform:
   - {fileID: 5750701385844525111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7115135458508361374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4386977516471499933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218b8c4bd356f433b8808b9cf36c4585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightDoor: {fileID: 0}
-  leftDoor: {fileID: 0}
-  openDistance: 2
-  speed: 2
-  axis: x
 --- !u!65 &3862815349516364939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -178,5 +161,18 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.958463, y: 0.1637314, z: 1.958463}
-  m_Center: {x: 0, y: 0.077083275, z: 0}
+  m_Size: {x: 1.958463, y: 0.6363876, z: 1.958463}
+  m_Center: {x: 0, y: 0.31341136, z: 0}
+--- !u!114 &6331847433797340589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386977516471499933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f4b731857ce493f9e43996b94e51b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 0}

@@ -1,12 +1,8 @@
+using System;
 using UnityEngine;
 
-public class TriggerDoor : MonoBehaviour
+public class TriggerDoor : MonoBehaviour, TriggerButton.IInteractable
 {
-    [Header("Doors Game Objects")]
-    [SerializeField]
-    private Transform rightDoor;
-    [SerializeField]
-    private Transform leftDoor;
 
     [Header("Movement options")]
     [SerializeField]
@@ -16,7 +12,9 @@ public class TriggerDoor : MonoBehaviour
     [SerializeField]
     private string axis = "x";
 
-
+    // Game Object de cada puerta
+    private Transform rightDoor; 
+    private Transform leftDoor;
     private Vector3 openRightPosition; // Posición a la que se abrirá la puerta derecha.
     private Vector3 openLeftPosition; // Posición a la que se abrirá la puerta izquierda.
     private Vector3 closedRightPosition; // Posición original de la puerta derecha.
@@ -27,9 +25,14 @@ public class TriggerDoor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        // El primer hijo del objeto que contiene este script es la puerta izquierda y el segundo hijo es la puerta derecha
+        leftDoor = transform.GetChild(0);
+        rightDoor = transform.GetChild(1);
+            
         closedLeftPosition = leftDoor.position;
         closedRightPosition = rightDoor.position;
 
+        // Calculamos la posición de las puertas abierta dependiendo del eje en el cual se abren
         if (axis.ToLower() == "x")
         {
             openLeftPosition = closedLeftPosition + new Vector3(-openDistance, 0, 0);
@@ -71,12 +74,12 @@ public class TriggerDoor : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    // Implementa la interfaz IInteractable, al oprimir el boton correspondiente la puerta se abre
+    public void Interact()
     {
-        if (other.CompareTag("Player") && !isOpen) //Revisamos que la puerta no haya sido abierta aun
+        if (!isOpen) // Revisamos que la puerta no haya sido abierta aun
         {
             isOpen = true;
         }
     }
-
 }
