@@ -40,6 +40,7 @@ public class IVANPauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         PauseButton.SetActive(false);
         PauseMenu.SetActive(true);
+        isPaused = true;
     }
 
     public void Resume()
@@ -47,12 +48,14 @@ public class IVANPauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         PauseButton.SetActive(true);
         PauseMenu.SetActive(false);
+        isPaused = false;
 
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Time.timeScale = 1f; //Prueba para reiniciar el juego en la escena
 
     }
 

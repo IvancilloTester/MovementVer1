@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class PlayerStats : MonoBehaviour
     private bool shieldActive;
 
     public GameObject shieldOBJ;
+    public GameOver gameOverScript; //añadi esto para el game over screen Ivan
 
 
     private void Start()
@@ -26,6 +29,12 @@ public class PlayerStats : MonoBehaviour
         SetVidas(vidasMax);
         AddStamina(staminaMax);
         SetHuesitos(0);
+        if (gameOverScript == null) 
+        { 
+            
+            Debug.LogError("gameOverScript no ha sido asignado en el Inspector"); 
+        
+        }
     }
 
     //VIDAS
@@ -43,7 +52,17 @@ public class PlayerStats : MonoBehaviour
             return;
         }
         CambiarVidas(-_vidas);
-        MovePlayerToCheckpoint();
+        if(vidasActuales <= 0)
+        {
+            gameOverScript.gameOver();
+            Debug.Log("Game Over");
+        }
+        else
+        {
+            MovePlayerToCheckpoint();
+
+        }
+        
     }
 
     private void MovePlayerToCheckpoint()

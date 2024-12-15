@@ -17,7 +17,7 @@ public class GameOver : MonoBehaviour
 
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-
+        Debug.Log("Game Over panel activado");
     }
 
     public void Restart()
@@ -25,6 +25,7 @@ public class GameOver : MonoBehaviour
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Reiniciando nivel");
     }
 
     public void MainMenu()
