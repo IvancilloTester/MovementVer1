@@ -9,7 +9,7 @@ public class MovingPlatform : MonoBehaviour
     private float _speed; // Velocidad a la cual se movera la plataforma
 
     //Guardamos la instancia del objeto padre del player en caso de que exista uno
-    private Transform playerParent = GameManager.instance.petController.transform.parent;
+    private Transform playerParent;
 
     private int _targetWaypointIndex;
 
@@ -24,6 +24,7 @@ public class MovingPlatform : MonoBehaviour
     void Start()
     {
         TargetNextWaypoint(); // Se llama para iniciar el movimiento
+        playerParent = GameManager.instance.petController.transform.parent;
     }
 
     // Update is called once per frame
