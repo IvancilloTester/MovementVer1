@@ -29,10 +29,9 @@ public class PetController : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded, IsJumping = false;
 
-    /* Inicializa las variables para controlar 
+    /* Inicializa la variable para controlar 
        la stamina del personaje */
     public float stamina = 5;
-    public float rechargestamina = 0;
 
     void Update() {
 
@@ -42,12 +41,13 @@ public class PetController : MonoBehaviour
         //TRIGGER EXIT
         //GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT = PLAYERPARENT;
 
+        /* Se recarga la barra de stamina*/
+        GameManager.instance.playerStats.SetStamina(stamina);
         /* El personaje corre si se presiona Shift Izquierdo */
         if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift)) {
-            stamina += Time.deltaTime;
+            stamina += (0.2f * Time.deltaTime);
             if (stamina > 5) {
                 stamina = 5;
-                //rechargestamina = 0;
             }
         }
         
