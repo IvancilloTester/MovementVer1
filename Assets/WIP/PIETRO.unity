@@ -1945,7 +1945,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163925548}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0137741715, y: -0.85064644, z: 0.51129365, w: -0.121613346}
+  m_LocalRotation: {x: -0.013774173, y: -0.85064644, z: 0.51129365, w: -0.121613346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7229,7 +7229,6 @@ MonoBehaviour:
   jumpspeed: 16
   gravity: -9.81
   stamina: 5
-  rechargestamina: 0
 --- !u!143 &787097449
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8441,7 +8440,6 @@ MonoBehaviour:
   jumpspeed: 15
   gravity: -9.81
   stamina: 5
-  rechargestamina: 0
 --- !u!1 &931413923
 GameObject:
   m_ObjectHideFlags: 0
