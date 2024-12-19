@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Button
+  - HuesitoTirar
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Huesito
   - Water
   - UI
   - 

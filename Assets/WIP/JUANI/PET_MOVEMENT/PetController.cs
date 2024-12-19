@@ -7,6 +7,7 @@ using UnityEngine.Splines;
 [RequireComponent(typeof(CharacterController))]
 public class PetController : MonoBehaviour
 {
+
     /* Inicializa las variables para controlar al personaje
        que la cámara lo siga y hacer las animaciones */
     public CharacterController Controller;
@@ -33,7 +34,8 @@ public class PetController : MonoBehaviour
        la stamina del personaje */
     public float stamina = 5;
 
-    void Update() {
+    void Update()
+    {
 
         //PLAYERPARENT = GAMEMANAGER.INSTANCE.PETCONTROLLER.TRANSFORM.PARENT;
         //TRIGGER ENTER
@@ -44,31 +46,39 @@ public class PetController : MonoBehaviour
         /* Se recarga la barra de stamina*/
         GameManager.instance.playerStats.SetStamina(stamina);
         /* El personaje corre si se presiona Shift Izquierdo */
-        if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift)) {
+        if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift))
+        {
             stamina += (0.2f * Time.deltaTime);
-            if (stamina > 5) {
+            if (stamina > 5)
+            {
                 stamina = 5;
             }
         }
-        
-        if (Input.GetKey(KeyCode.LeftShift)) {
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             speed = runspeed;
             stamina -= Time.deltaTime;
             GameManager.instance.playerStats.SetStamina(stamina);
             /* Si se acaba la stamina, deja de correr 
                y se empieza a recargar */
-            if (stamina <= 0) {
+            if (stamina <= 0)
+            {
                 speed = normalspeed;
                 stamina = 0;
             }
-        } else {
+        }
+        else
+        {
             speed = normalspeed;
         }
         /* Si el personaje está en el piso, puede saltar
            y se decide la animación a realizar */
         isGrounded = Controller.isGrounded;
-        if (isGrounded && velocity.y < 0) {
-            if (IsJumping) {
+        if (isGrounded && velocity.y < 0)
+        {
+            if (IsJumping)
+            {
                 IsJumping = false;
                 animator.SetBool("IsJumping", false);
             }
@@ -78,11 +88,12 @@ public class PetController : MonoBehaviour
         animator.SetBool("IsWalking", false);
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-        direction = new Vector3(horizontal, 0f, vertical).normalized; 
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
         /* Realiza el movimiento del personaje, hace que el personaje rote dependiendo
            de la dirección del movimiento, también se suaviza el movimiento para que el
            personaje no haga giros bruscos */
-        if (direction.magnitude > 0.1f) {
+        if (direction.magnitude > 0.1f)
+        {
             animator.SetBool("IsWalking", true);
             targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothingVelocity, smoothingTime);
@@ -92,18 +103,21 @@ public class PetController : MonoBehaviour
             Controller.Move(moveDir.normalized * speed * Time.fixedDeltaTime);
         }
         /* Si el personaje está saltando, actualiza la animación*/
-        if (!IsJumping && !isGrounded) {
+        if (!IsJumping && !isGrounded)
+        {
             IsJumping = true;
             animator.SetBool("IsJumping", true);
         }
         /* Realiza el salto del personaje */
         velocity.y += gravity * Time.deltaTime;
         Controller.Move(velocity * Time.deltaTime);
-    } 
+    }
 
-    void OnJump() {
+    void OnJump()
+    {
         /* Cuando el personaje salta, se realiza la animación de salto*/
-        if (isGrounded) {
+        if (isGrounded)
+        {
             IsJumping = true;
             animator.SetBool("IsJumping", true);
             velocity.y = Mathf.Sqrt(jumpspeed * -0.2f * gravity);
@@ -116,7 +130,5 @@ public class PetController : MonoBehaviour
         transform.position = _newPos;
         Controller.enabled = true;  // Re-enable the controller
     }
-
-    
-
 }
+

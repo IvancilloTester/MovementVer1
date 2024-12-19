@@ -7,6 +7,7 @@ using UnityEditor;
 
 public class Enemy : MonoBehaviour
 {
+    /* Inicializar variables*/
     public Animator animator;
     public Estados estado;
     public float distanciaVer = 3.0f;
@@ -22,6 +23,8 @@ public class Enemy : MonoBehaviour
     private int movement = 0;
     bool wait, rotate, walk;
     public float distance = 2.5f;
+    public float distanceHuesito;
+    public LayerMask detectableLayers;
 
     private void Start() {
         action();
@@ -35,10 +38,12 @@ public class Enemy : MonoBehaviour
         StartCoroutine(CalcularDistancia());
     }
 
+    /* Si el enemigo se encuentra en estado de idle, realiza los movimientos que correspondan.
+       Además, si encuentra con una pared, este va a rotar para no quedarse caminando contra
+       la pared por un tiempo */
     private void Update()
     {
-        if ((int)estado == 0)
-        {
+        if ((int)estado == 0) {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, distance)) {
                 if (hit.collider) { 
@@ -46,24 +51,22 @@ public class Enemy : MonoBehaviour
                     StartCoroutine(RotTime());
                 }
             }
-            if (walk)
-            {
+            if (walk) {
                 animator.SetInteger("Cambios", 1);
                 transform.position += (transform.forward * speedMov * Time.deltaTime);
             }
-            if (rotate)
-            {
-                //animator.SetInteger("Cambios", 1);
+            if (rotate) {
                 transform.Rotate(Vector3.up * speedRot * Time.deltaTime);
-
             }
-            if (wait)
-            {
+            if (wait) {
                 animator.SetInteger("Cambios", 0);
             }
         }
     }
 
+    /* El enemigo hace movimientos aleatorios que varian entre quedarse quieto,
+       caminar y rotar. La acción que haya dependerá del número al azar que 
+       salga en random*/
     void action() {
         movement = Random.Range(1, 4);
         if (movement == 1) {
@@ -81,27 +84,28 @@ public class Enemy : MonoBehaviour
         Invoke("action", reactTime);
     }
 
+    /* El enemigo rota y luego deja de hacerlo, esto solo pasa cuando
+       la condición para rotar se cumple*/
     IEnumerator RotTime() {
         animator.SetInteger("Cambios", 1);
         yield return new WaitForSeconds(2f);
         rotate = false;
     }
 
+    /* Revisa constantemente el estado actual en que se encuentra el enemigo*/
     private void LateUpdate() {
         CheckEstado();
     }
 
+    /* Hace el cambio al estado deseado*/
     public void CambioEstado(Estados e) {
         switch (e)
         {
             case Estados.idle:
-
                 break;
             case Estados.distraido:
-
                 break;
             case Estados.muerto:
-
                 break;
             default:
                 break;
@@ -109,6 +113,7 @@ public class Enemy : MonoBehaviour
         estado = e;
     }
 
+    /* Checkea el estado acual en que nos encontramos */
     private void CheckEstado() {
         switch (estado) {
             case Estados.idle:
@@ -137,9 +142,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /* Hace la animación cuando el personaje se distrae con el huesito */
     public virtual void DistraidoEstado() {
-        animator.SetInteger("Cambios", (int)estado);
-
+        animator.SetInteger("Cambios", 0);
     }
 
     /* Si el personaje sale del rango del enemigo, este vuelve al estado Idle */
@@ -149,6 +154,24 @@ public class Enemy : MonoBehaviour
             CambioEstado(Estados.idle);
         }
         
+    }
+
+    /* Cuando se tira el huesito y este colisiona con el enemigo, el enemigo
+       se distrae por unos segundos antes de volver a su estado habitual */
+    private void OnCollisionEnter(Collision Huesito)
+    {
+        if (((1 << Huesito.gameObject.layer) & detectableLayers) != 0)
+        {
+            Debug.Log("Objeto detectado dentro del rango: " + Huesito.gameObject.name);
+            CambioEstado(Estados.distraido);
+            Destroy(Huesito.gameObject);
+            Invoke("CambiarIdle", waitTime * 2);
+        }
+    }
+
+    /* Esto lo puse para poder cambiar al estado Idle con un inoke*/
+    private void CambiarIdle() {
+        CambioEstado(Estados.idle);
     }
 
     /* Remueve una vida del personaje y lo devuelve a un checkpoint 
