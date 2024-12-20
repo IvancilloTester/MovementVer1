@@ -13286,7 +13286,7 @@ GameObject:
   - component: {fileID: 1433009043}
   - component: {fileID: 1433009042}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20822,6 +20822,10 @@ PrefabInstance:
     - target: {fileID: 1492832626810165369, guid: 4b33d1a8f02c0714ba8d4abf2eea416d, type: 3}
       propertyPath: staminaMax
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492832626810165369, guid: 4b33d1a8f02c0714ba8d4abf2eea416d, type: 3}
+      propertyPath: vidasActuales
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1492832626810165369, guid: 4b33d1a8f02c0714ba8d4abf2eea416d, type: 3}
       propertyPath: gameOverScript
