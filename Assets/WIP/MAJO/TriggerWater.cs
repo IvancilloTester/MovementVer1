@@ -19,7 +19,6 @@ public class TriggerWater : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerStats.RemoveVidas(1);
-            Debug.Log("AGUAAA");
         }
     }
 }
