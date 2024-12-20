@@ -16,6 +16,10 @@ public class TriggerWater : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("CAYO AL AGUA");
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.playerStats.RemoveVidas(1);
+            Debug.Log("AGUAAA");
+        }
     }
 }
