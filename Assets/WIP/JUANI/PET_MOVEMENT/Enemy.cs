@@ -26,7 +26,17 @@ public class Enemy : MonoBehaviour
     public float distanceHuesito;
     public LayerMask detectableLayers;
 
+    private AudioSource Barking;
+    private AudioSource Smelling;
+    private AudioSource Walking;
+    private AudioSource Gasping;
+
     private void Start() {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        Barking = audioSources[0];
+        Smelling = audioSources[1];
+        Walking = audioSources[2];
+        Gasping = audioSources[3];
         action();
     }
 
@@ -70,14 +80,20 @@ public class Enemy : MonoBehaviour
     void action() {
         movement = Random.Range(1, 4);
         if (movement == 1) {
+            Walking.Play();
+            Gasping.Play();
             wait = false; 
             walk = true;
         }
         if (movement == 2) {
+            Walking.Stop();
+            Gasping.Play();
             wait = true;
             walk = false;
         }
         if (movement == 3) {
+            Walking.Play();
+            Gasping.Play();
             rotate = true;
             StartCoroutine(RotTime());
         }
@@ -137,6 +153,9 @@ public class Enemy : MonoBehaviour
         animator.SetInteger("Cambios", (int)estado);
         if (distancia <= distanciaVer) {
             CambioEstado(Estados.muerto);
+            Barking.Play();
+            Gasping.Stop();
+            Walking.Stop();
             animator.SetInteger("Cambios", (int)estado);
             Invoke("AccionEnemigo", waitTime);
         }
@@ -144,14 +163,16 @@ public class Enemy : MonoBehaviour
 
     /* Hace la animación cuando el personaje se distrae con el huesito */
     public virtual void DistraidoEstado() {
+        Gasping.Stop();
+        Walking.Stop();
         animator.SetInteger("Cambios", 0);
     }
 
     /* Si el personaje sale del rango del enemigo, este vuelve al estado Idle */
     public virtual void MuertoEstado() {
-        if (distancia > distanciaVer)
-        {
+        if (distancia > distanciaVer) {
             CambioEstado(Estados.idle);
+            Barking.Stop();
         }
         
     }
@@ -162,6 +183,7 @@ public class Enemy : MonoBehaviour
     {
         if (((1 << Huesito.gameObject.layer) & detectableLayers) != 0)
         {
+            Smelling.Play();
             Debug.Log("Objeto detectado dentro del rango: " + Huesito.gameObject.name);
             CambioEstado(Estados.distraido);
             Destroy(Huesito.gameObject);
@@ -172,6 +194,7 @@ public class Enemy : MonoBehaviour
     /* Esto lo puse para poder cambiar al estado Idle con un inoke*/
     private void CambiarIdle() {
         CambioEstado(Estados.idle);
+        Smelling.Stop();
     }
 
     /* Remueve una vida del personaje y lo devuelve a un checkpoint 

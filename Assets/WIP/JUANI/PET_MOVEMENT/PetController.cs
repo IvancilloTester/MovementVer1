@@ -34,6 +34,16 @@ public class PetController : MonoBehaviour
        la stamina del personaje */
     public float stamina = 5;
 
+    private AudioSource WalkingP;
+    private AudioSource GaspingP;
+
+    private void Start()
+    {
+        AudioSource[] audioSourcesP = GetComponents<AudioSource>();
+        WalkingP = audioSourcesP[0];
+        GaspingP = audioSourcesP[1];
+    }
+
     void Update()
     {
 
@@ -46,30 +56,25 @@ public class PetController : MonoBehaviour
         /* Se recarga la barra de stamina*/
         GameManager.instance.playerStats.SetStamina(stamina);
         /* El personaje corre si se presiona Shift Izquierdo */
-        if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift))
-        {
+        if (stamina >= 0 && !Input.GetKey(KeyCode.LeftShift)) {
             stamina += (0.2f * Time.deltaTime);
-            if (stamina > 5)
-            {
+            if (stamina > 5) {
                 stamina = 5;
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
+        if (Input.GetKey(KeyCode.LeftShift)) {
             speed = runspeed;
             stamina -= Time.deltaTime;
             GameManager.instance.playerStats.SetStamina(stamina);
             /* Si se acaba la stamina, deja de correr 
                y se empieza a recargar */
-            if (stamina <= 0)
-            {
+            if (stamina <= 0) {
                 speed = normalspeed;
                 stamina = 0;
             }
         }
-        else
-        {
+        else {
             speed = normalspeed;
         }
         /* Si el personaje está en el piso, puede saltar
@@ -101,6 +106,7 @@ public class PetController : MonoBehaviour
 
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             Controller.Move(moveDir.normalized * speed * Time.fixedDeltaTime);
+            WalkingP.Play();
         }
         /* Si el personaje está saltando, actualiza la animación*/
         if (!IsJumping && !isGrounded)
@@ -111,6 +117,7 @@ public class PetController : MonoBehaviour
         /* Realiza el salto del personaje */
         velocity.y += gravity * Time.deltaTime;
         Controller.Move(velocity * Time.deltaTime);
+        WalkingP.Stop();
     }
 
     void OnJump()
