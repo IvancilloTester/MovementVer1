@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Button
   - HuesitoTirar
+  - ActualScoreText
+  - HighScoreText
+  - TimerText
   layers:
   - Default
   - TransparentFX
