@@ -6,6 +6,7 @@ public class LevelTimer : MonoBehaviour
 
     public float timePassed = 0;
     public bool isRunning;
+    public float maxTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,8 +44,10 @@ public class LevelTimer : MonoBehaviour
             isRunning = true;
         }
 
-        GameManager.instance.hudCanvas.UpdateTimerTEXT(timePassed);
-        
+        GameManager.instance.hudCanvas.UpdateTimerTEXT(maxTime - timePassed);
+        GameManager.instance.UpdateScores();
+
+
     }
     private void AddTime()
     {
@@ -55,7 +58,8 @@ public class LevelTimer : MonoBehaviour
             timePassed += Time.deltaTime;
             //Debug.Log($"Timer: {timePassed}");
         }
-        GameManager.instance.hudCanvas.UpdateTimerTEXT(timePassed);
+        GameManager.instance.hudCanvas.UpdateTimerTEXT(maxTime-timePassed);
+        GameManager.instance.UpdateScores();
     }
 
     public void RemoveTime(float _time)

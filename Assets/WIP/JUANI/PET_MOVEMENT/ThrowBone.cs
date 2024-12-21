@@ -53,7 +53,7 @@ public class ThrowBone : MonoBehaviour
             HuesitosActuales = playerStats.huesitosActuales;
             //Debug.Log("huesitosActuales: " + HuesitosActuales);
             if (Input.GetKeyDown(throwKey) && readyToThrow && HuesitosActuales > 0) {
-                Throw(HuesitosActuales);
+                Throw(1);
             }
         }
         else {

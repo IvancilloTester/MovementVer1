@@ -12,10 +12,12 @@ public class Enemy : MonoBehaviour
     public Estados estado;
     public float distanciaVer = 3.0f;
     public bool AutoSelectTarget = true;
+    public GameObject dangerZone;
 
     public Transform Target;
     public float distancia;
     public float waitTime = 2.0f;
+    public float distraidoTime = 5.0f;
 
     public float speedMov = 1.0f;
     public float speedRot = 50.0f;
@@ -151,6 +153,7 @@ public class Enemy : MonoBehaviour
        Después de un waitTime, te quita una vida y regresas al checkpoint */
     public virtual void IdleEstado() {
         animator.SetInteger("Cambios", (int)estado);
+        dangerZone.SetActive(true);
         if (distancia <= distanciaVer) {
             CambioEstado(Estados.muerto);
             Barking.Play();
@@ -163,6 +166,7 @@ public class Enemy : MonoBehaviour
 
     /* Hace la animación cuando el personaje se distrae con el huesito */
     public virtual void DistraidoEstado() {
+        dangerZone.SetActive(false);
         Gasping.Stop();
         Walking.Stop();
         animator.SetInteger("Cambios", 0);
@@ -187,7 +191,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Objeto detectado dentro del rango: " + Huesito.gameObject.name);
             CambioEstado(Estados.distraido);
             Destroy(Huesito.gameObject);
-            Invoke("CambiarIdle", waitTime * 2);
+            Invoke("CambiarIdle", distraidoTime);
         }
     }
 

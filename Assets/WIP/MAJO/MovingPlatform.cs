@@ -67,6 +67,7 @@ public class MovingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.petController.transform.SetParent(transform);
+            Debug.Log("Perrito en plataforma");
         }
     }
 

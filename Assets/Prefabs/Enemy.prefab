@@ -53,14 +53,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7849365739590631473}
   estado: 0
-  distanciaVer: 3
+  distanciaVer: 2
   AutoSelectTarget: 1
+  dangerZone: {fileID: 7722659227042419030}
   Target: {fileID: 0}
   distancia: 0
-  waitTime: 2
+  waitTime: 1
   speedMov: 1
   speedRot: 50
-  reactTime: 1
+  reactTime: 5
   distance: 2.5
   distanceHuesito: 0
   detectableLayers:
@@ -106,7 +107,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 446a464e260f2e44eb4c41bccbdc468e, type: 3}
   m_Resource: {fileID: 8300000, guid: 446a464e260f2e44eb4c41bccbdc468e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.201
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -203,7 +204,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: bd5a93af1a21e4e4ea431a52e10c34eb, type: 3}
   m_Resource: {fileID: 8300000, guid: bd5a93af1a21e4e4ea431a52e10c34eb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.459
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -300,7 +301,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 35d7f80bf1b399a4e9aa550f350e6795, type: 3}
   m_Resource: {fileID: 8300000, guid: 35d7f80bf1b399a4e9aa550f350e6795, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.516
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -397,7 +398,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5ff392cd4e10c134eb6fb1266e195f56, type: 3}
   m_Resource: {fileID: 8300000, guid: 5ff392cd4e10c134eb6fb1266e195f56, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -510,7 +511,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.16, z: 0}
-  m_LocalScale: {x: 8, y: 0.2, z: 8}
+  m_LocalScale: {x: 5.6, y: 0.2, z: 5.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2521077430696423826}

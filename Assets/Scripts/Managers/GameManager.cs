@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public LevelTimer levelTimer;
     [SerializeField]
+    public GameOver gameOver;
+    [SerializeField]
     public PlayerScore playerScore;
     [SerializeField]
     public PlayerStats playerStats;
@@ -23,6 +25,10 @@ public class GameManager : MonoBehaviour
     private GameState gameState;
     [SerializeField]
     public PetController petController;
+
+    public int actualScore;
+    public int highScore;
+
 
 
     //CHECKPOINTS
@@ -51,9 +57,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //PlayerPrefs.SetInt("highscore", 0);
         levelTimer.RestartTimer(false);
         playerStats.DesactivarShield();
         petController.transform.position = playerSpawn.position;
+        highScore = PlayerPrefs.GetInt("highscore");
+
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;
@@ -70,6 +79,17 @@ public class GameManager : MonoBehaviour
         }
         currentCheckpoint = _newCheckpoint;
         currentCheckpoint.ClaimCheckpoint();
+
+    }
+
+    public void Ganar()
+    {
+        gameOver.Ganar();
+    }
+
+    public void UpdateScores()
+    {
+        actualScore = Mathf.CeilToInt(levelTimer.maxTime-levelTimer.timePassed)*5;
 
     }
 

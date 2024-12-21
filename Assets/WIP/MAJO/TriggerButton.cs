@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class TriggerButton : MonoBehaviour
 {
+
+    [SerializeField]
+    Material onMaterial;
+    [SerializeField]
+    GameObject buttonObject;
+
+
     // Interfaz para hacer un objeto "interactuable" (Puertas o puentes)
     public interface IInteractable
     {
@@ -29,6 +36,14 @@ public class TriggerButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             interactable?.Interact();
+            PushButton();
         }
+    }
+
+    private void PushButton()
+    {
+        Transform _buttonPos = buttonObject.transform;
+        _buttonPos.position = new Vector3(_buttonPos.position.x, 0.1f, _buttonPos.position.z);
+        buttonObject.GetComponent<MeshRenderer>().material = onMaterial;
     }
 }
