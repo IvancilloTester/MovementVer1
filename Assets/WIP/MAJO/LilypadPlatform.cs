@@ -16,13 +16,12 @@ public class LilypadPlatform : MonoBehaviour
 
 
     private bool isBlinking = false;
-    private MeshRenderer meshRenderer;
+    public MeshRenderer meshRenderer;
     private Collider platformCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         platformCollider = GetComponent<MeshCollider>();
     }
 
