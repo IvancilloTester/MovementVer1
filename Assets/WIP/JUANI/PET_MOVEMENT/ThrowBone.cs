@@ -51,7 +51,7 @@ public class ThrowBone : MonoBehaviour
         playerStats = Object.FindFirstObjectByType<PlayerStats>();
         if (playerStats != null) {
             HuesitosActuales = playerStats.huesitosActuales;
-            Debug.Log("huesitosActuales: " + HuesitosActuales);
+            //Debug.Log("huesitosActuales: " + HuesitosActuales);
             if (Input.GetKeyDown(throwKey) && readyToThrow && HuesitosActuales > 0) {
                 Throw(HuesitosActuales);
             }

@@ -72,17 +72,17 @@ public class PlayerStats : MonoBehaviour
         if (!GameManager.instance.currentCheckpoint)
         {
             _newPosition = GameManager.instance.playerSpawn.transform.position;
-            Debug.Log("AL INICIO");
+            //Debug.Log("AL INICIO");
         }
         else
         {
             _newPosition = GameManager.instance.currentCheckpoint.transform.position;
-            Debug.Log("AL CHECKPOINT");
+            //Debug.Log("AL CHECKPOINT");
         }
 
 
         GameManager.instance.petController.Teleport(_newPosition);
-        Debug.Log(GameManager.instance.petController.transform.position);
+        //Debug.Log(GameManager.instance.petController.transform.position);
 
 
     }

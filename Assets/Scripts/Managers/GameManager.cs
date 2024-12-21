@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+
+    public int targetFrameRate = 60;
+
     //Componentes
     [SerializeField]
     public LevelTimer levelTimer;
@@ -52,7 +55,11 @@ public class GameManager : MonoBehaviour
         playerStats.DesactivarShield();
         petController.transform.position = playerSpawn.position;
 
-    }
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFrameRate;
+
+
+}
 
     public void ChangeCheckpoint(CheckpointObject _newCheckpoint)
     {

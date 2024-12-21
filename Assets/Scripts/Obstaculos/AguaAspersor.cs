@@ -3,7 +3,7 @@ using UnityEngine;
 public class AguaAspersor : MonoBehaviour
 {
     [SerializeField]
-    private int damageValue;
+    public int damageValue;
 
     private void OnTriggerEnter(Collider other)
     {

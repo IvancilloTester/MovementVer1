@@ -15,13 +15,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.073631324, g: 0.06187701, b: 0.48584908, a: 1}
+    m_Value: {r: 0.011792407, g: 0, b: 0.4245283, a: 1}
   highlights:
     m_OverrideState: 1
     m_Value: {r: 0.4669811, g: 0.45784613, b: 0.33041117, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: -19
+    m_Value: 42
 --- !u!114 &-7386194920414777109
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -556,10 +556,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.29
 --- !u!114 &3066868921558395362
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -572,10 +572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e021b4c809a781e468c2988c016ebbea, type: 3}
   m_Name: ColorLookup
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   texture:
     m_OverrideState: 1
-    m_Value: {fileID: 0}
+    m_Value: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
     dimension: 1
   contribution:
     m_OverrideState: 1
@@ -730,7 +730,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.8372402, y: 0.92793816, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: 0}

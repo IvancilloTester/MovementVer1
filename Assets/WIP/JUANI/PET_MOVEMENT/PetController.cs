@@ -105,7 +105,7 @@ public class PetController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            Controller.Move(moveDir.normalized * speed * Time.fixedDeltaTime);
+            Controller.Move(moveDir.normalized * speed * Time.deltaTime);
             WalkingP.Play();
         }
         /* Si el personaje está saltando, actualiza la animación*/

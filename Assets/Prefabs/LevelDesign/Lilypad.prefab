@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 3
-  timeToReappear: 4
-  blinkingInterval: 0.5
+  timeToReappear: 2
+  blinkingInterval: 0.2
   blinkingTime: 2.5
 --- !u!64 &-1843956719222148469
 MeshCollider:
