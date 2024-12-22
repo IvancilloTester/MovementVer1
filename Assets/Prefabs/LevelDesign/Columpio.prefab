@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 6324666269544192530}
   - component: {fileID: 6119003016415696753}
   - component: {fileID: 3417196022288125272}
+  - component: {fileID: 4803170095327063773}
   m_Layer: 0
   m_Name: Swing
   m_TagString: Untagged
@@ -171,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 2682035811725870168}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.717, y: -0.006000042, z: 0}
+  m_LocalPosition: {x: 1.022, y: -0.006000042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -263,6 +264,27 @@ MonoBehaviour:
   motorSpeed: 100
   motorForce: 10
   startForward: 1
+--- !u!65 &4803170095327063773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682035811725870168}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7307114, y: 1.3270488, z: 0.42570686}
+  m_Center: {x: 0.032443255, y: -0.16352439, z: -0.026713371}
 --- !u!1 &3436042376997996329
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 4979855143413324595}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.674, y: 0.847, z: 0}
+  m_LocalPosition: {x: 1.073, y: 0.847, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -753,7 +775,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.102999926, y: 0.883, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2761, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7671155327664871296}
@@ -800,8 +822,9 @@ GameObject:
   - component: {fileID: 8962714153551124470}
   - component: {fileID: 6147977605055101909}
   - component: {fileID: 533625885838855831}
+  - component: {fileID: 4283647808749132591}
   m_Layer: 0
-  m_Name: Swing (1)
+  m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +839,7 @@ Transform:
   m_GameObject: {fileID: 5776104935492521557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.605, y: -0.006000042, z: 0}
+  m_LocalPosition: {x: -0.921, y: -0.006000042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -862,7 +885,7 @@ HingeJoint:
   serializedVersion: 3
   m_ConnectedBody: {fileID: 5209546375431883533}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.89, z: 0}
+  m_Anchor: {x: 0, y: 0.9, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
@@ -908,6 +931,27 @@ MonoBehaviour:
   motorSpeed: 100
   motorForce: 10
   startForward: 0
+--- !u!65 &4283647808749132591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776104935492521557}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7079189, y: 1.3087718, z: 0.4395485}
+  m_Center: {x: 0.036011577, y: -0.15438604, z: 0.0050697327}
 --- !u!1 &5817924495558645048
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,4 +58,12 @@ public class SwingMovement : MonoBehaviour
         motor.targetVelocity = speed; // Ajusta la velocidad
         hingeJoint.motor = motor;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.playerStats.RemoveVidas(1);
+        }
+    }
 }
