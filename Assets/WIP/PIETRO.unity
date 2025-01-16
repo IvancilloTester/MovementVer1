@@ -1438,7 +1438,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1724232836}
   - {fileID: 516516502}
   - {fileID: 1173065223}
   - {fileID: 1717436574}
@@ -40058,11 +40057,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1bc6d83f0a915104b9fe6043daa4ab47, type: 3}
   m_PrefabInstance: {fileID: 1717436568}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1724232836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-  m_PrefabInstance: {fileID: 8019787105104890024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1725009518
 GameObject:
   m_ObjectHideFlags: 0
@@ -49153,68 +49147,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &8019787105104890024
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 35124869}
-    m_Modifications:
-    - target: {fileID: 2732080514775099686, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_Name
-      value: StaminaObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414447513707083479, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5943101052783232795, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-      propertyPath: staminaValue
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5309660963254936717, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84529965d69da3d4e823c99dc097076a, type: 3}
 --- !u!4 &8344603528011331223
 Transform:
   m_ObjectHideFlags: 0

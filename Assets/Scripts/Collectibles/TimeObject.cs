@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.ParticleSystem;
 
 public class TimeObject : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class TimeObject : MonoBehaviour
     //VALORES DEL SCORE
     [SerializeField]
     private float scoreValue;
-
+    public ParticleSystem particles;
+    public GameObject mesh;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,10 +18,15 @@ public class TimeObject : MonoBehaviour
         {
             GameManager.instance.levelTimer.RemoveTime(scoreValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"-{scoreValue} segundos", "time");
-            this.gameObject.SetActive(false);
+            particles.Play();
+            mesh.transform.localScale = Vector3.zero;
+            Invoke("Deactivate", particles.main.duration);
         }
 
     }
 
-
+    private void Deactivate()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

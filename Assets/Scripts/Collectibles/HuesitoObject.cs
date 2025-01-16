@@ -1,9 +1,12 @@
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class HuesitoObject : MonoBehaviour
 {
     [SerializeField]
     private int huesitoValue;
+    public ParticleSystem particles;
+    public GameObject mesh;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,8 +15,15 @@ public class HuesitoObject : MonoBehaviour
         {
             GameManager.instance.playerStats.AddHuesitos(huesitoValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{huesitoValue} huesito", "huesito");
-            this.gameObject.SetActive(false);
+            particles.Play();
+            mesh.transform.localScale = Vector3.zero;
+            Invoke("Deactivate", particles.main.duration);
         }
 
+    }
+
+    private void Deactivate()
+    {
+        this.gameObject.SetActive(false);
     }
 }
