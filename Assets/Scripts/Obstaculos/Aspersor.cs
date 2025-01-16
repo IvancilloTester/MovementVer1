@@ -8,6 +8,7 @@ public class Aspersor : MonoBehaviour
     float intervaloDisparos;
 
     public int damageValue;
+    public ParticleSystem splash;
 
     [SerializeField]
     float velocidadAgua;
@@ -60,7 +61,7 @@ public class Aspersor : MonoBehaviour
     {
         //Debug.Log("SPLASH");
         StartCoroutine(ActivarDisparos());
-
+        splash.Play();
         
         var newAgua1 = Instantiate(chorroAguaPrefab, waterSources[2]);
         Vector3 direccion = this.transform.forward*velocidadAgua;

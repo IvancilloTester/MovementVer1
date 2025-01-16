@@ -48797,6 +48797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aspersor
       objectReference: {fileID: 0}
+    - target: {fileID: 7029584693863322563, guid: 03908463df32dab47b068887cf201b65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
