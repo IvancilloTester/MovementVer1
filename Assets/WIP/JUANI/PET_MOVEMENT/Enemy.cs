@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(CalcularDistancia());
     }
 
-    /* Si el enemigo se encuentra en estado de idle, realiza los movimientos que correspondan.
+    /* Si el enemigo se encuentra en estado de NoRango, realiza los movimientos que correspondan.
        Además, si encuentra con una pared, este va a rotar para no quedarse caminando contra
        la pared por un tiempo */
     private void Update()
@@ -119,11 +119,11 @@ public class Enemy : MonoBehaviour
     public void CambioEstado(Estados e) {
         switch (e)
         {
-            case Estados.idle:
+            case Estados.NoRango:
                 break;
-            case Estados.distraido:
+            case Estados.Distraidohuesito:
                 break;
-            case Estados.muerto:
+            case Estados.EnRango:
                 break;
             default:
                 break;
@@ -134,28 +134,28 @@ public class Enemy : MonoBehaviour
     /* Checkea el estado acual en que nos encontramos */
     private void CheckEstado() {
         switch (estado) {
-            case Estados.idle:
-                IdleEstado();
+            case Estados.NoRango:
+                NoRangoEstado();
                 break;
-            case Estados.distraido:
-                DistraidoEstado();
+            case Estados.Distraidohuesito:
+                DistraidohuesitoEstado();
                 break;
-            case Estados.muerto:
-                MuertoEstado();
+            case Estados.EnRango:
+                EnRangoEstado();
                 break;
             default:
                 break;
         }
     }
 
-    /* Hace la animación del estado idle del enemigo, además si el
+    /* Hace la animación del estado NoRango del enemigo, además si el
        personaje entra en el área del enemigo, este hace una animación.
        Después de un waitTime, te quita una vida y regresas al checkpoint */
-    public virtual void IdleEstado() {
+    public virtual void NoRangoEstado() {
         animator.SetInteger("Cambios", (int)estado);
         dangerZone.SetActive(true);
         if (distancia <= distanciaVer) {
-            CambioEstado(Estados.muerto);
+            CambioEstado(Estados.EnRango);
             Barking.Play();
             Gasping.Stop();
             Walking.Stop();
@@ -165,17 +165,17 @@ public class Enemy : MonoBehaviour
     }
 
     /* Hace la animación cuando el personaje se distrae con el huesito */
-    public virtual void DistraidoEstado() {
+    public virtual void DistraidohuesitoEstado() {
         dangerZone.SetActive(false);
         Gasping.Stop();
         Walking.Stop();
         animator.SetInteger("Cambios", 0);
     }
 
-    /* Si el personaje sale del rango del enemigo, este vuelve al estado Idle */
-    public virtual void MuertoEstado() {
+    /* Si el personaje sale del rango del enemigo, este vuelve al estado NoRango */
+    public virtual void EnRangoEstado() {
         if (distancia > distanciaVer) {
-            CambioEstado(Estados.idle);
+            CambioEstado(Estados.NoRango);
             Barking.Stop();
         }
         
@@ -189,15 +189,15 @@ public class Enemy : MonoBehaviour
         {
             Smelling.Play();
             Debug.Log("Objeto detectado dentro del rango: " + Huesito.gameObject.name);
-            CambioEstado(Estados.distraido);
+            CambioEstado(Estados.Distraidohuesito);
             Destroy(Huesito.gameObject);
-            Invoke("CambiarIdle", distraidoTime);
+            Invoke("CambiarNoRango", distraidoTime);
         }
     }
 
-    /* Esto lo puse para poder cambiar al estado Idle con un inoke*/
-    private void CambiarIdle() {
-        CambioEstado(Estados.idle);
+    /* Esto lo puse para poder cambiar al estado NoRango con un inoke*/
+    private void CambiarNoRango() {
+        CambioEstado(Estados.NoRango);
         Smelling.Stop();
     }
 
@@ -231,7 +231,7 @@ public class Enemy : MonoBehaviour
 
 /* Se inicializan los estados en los que puede estar el enemigo */
 public enum Estados { 
-    idle        = 0,
-    distraido   = 1,
-    muerto      = 2
+    NoRango             = 0,
+    Distraidohuesito    = 1,
+    EnRango      = 2
 }
