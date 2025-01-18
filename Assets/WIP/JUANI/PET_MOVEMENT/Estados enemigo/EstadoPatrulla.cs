@@ -7,7 +7,7 @@ public class EstadoPatrulla : Estado
     public NavMeshAgent agente;
     public List<Transform> posiciones = new List<Transform>();
     public int indiceActual = 0;
-    public Animator animator;
+    //public Animator animator;
 
 
     public EstadoPatrulla(NavMeshAgent agen, List<Transform> pos)
@@ -24,7 +24,7 @@ public class EstadoPatrulla : Estado
     
     override public void HacerAccion()
     {
-        animator.SetInteger("Cambios", 1);
+        //animator.SetInteger("Cambios", 1);
         // Verificar si el agente ya llegó al destino
         if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance) {
             
