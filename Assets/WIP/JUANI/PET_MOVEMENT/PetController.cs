@@ -12,7 +12,9 @@ public class PetController : MonoBehaviour
        que la cámara lo siga y hacer las animaciones */
     public CharacterController Controller;
     public Transform cam;
+    public ParticleSystem dustParticles;
     public Animator animator;
+    public bool isStill;
 
     /* Inicializa las variables para controlar 
        el movimiento del personaje */
@@ -22,7 +24,7 @@ public class PetController : MonoBehaviour
     public float smoothingTime = 0.3f;
     float smoothingVelocity, horizontal, vertical;
     float targetAngle, angle;
-    Vector3 moveDir, direction;
+    public Vector3 moveDir, direction;
 
     /* Inicializa las variables para controlar 
        el salto del personaje */
@@ -88,9 +90,16 @@ public class PetController : MonoBehaviour
                 animator.SetBool("IsJumping", false);
             }
             velocity.y = -2f;
+
+
+
         }
         /* Se encuentran los ejes para el movimiento del personaje */
         animator.SetBool("IsWalking", false);
+
+
+
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -106,8 +115,31 @@ public class PetController : MonoBehaviour
 
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             Controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
             WalkingP.Play();
+
         }
+
+        if (direction.magnitude > 0)
+        {
+            if (isStill)
+            {
+                Debug.Log("Walkin");
+                isStill = false;
+                dustParticles.Play();
+            }
+
+        }
+        else
+        {
+            if (!isStill)
+            {
+                Debug.Log("Stopped");
+                isStill = true;
+                dustParticles.Stop();
+            }
+        }
+
         /* Si el personaje está saltando, actualiza la animación*/
         if (!IsJumping && !isGrounded)
         {
