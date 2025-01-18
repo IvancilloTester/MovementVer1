@@ -25,14 +25,19 @@ public class EstadoPatrulla : Estado
     override public void HacerAccion()
     {
         //animator.SetInteger("Cambios", 1);
-        // Verificar si el agente ya llegó al destino
+        // Verificar si el agente ya llegï¿½ al destino
         if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance) {
-            
-            // Incrementar el índice para seleccionar el siguiente destino
+
+            Debug.Log("Pos:" + posiciones.Count);
+            Debug.Log("index:" + indiceActual);
+
+            // Incrementar el ï¿½ndice para seleccionar el siguiente destino
             indiceActual++;
 
+            Debug.Log("index2:" + indiceActual);
+
             // Si llegamos al final de la lista, volvemos al inicio
-            if (indiceActual > posiciones.Count)
+            if (indiceActual >= posiciones.Count)
             {
                 indiceActual = 0;
             }
@@ -40,8 +45,8 @@ public class EstadoPatrulla : Estado
             // Asignar el nuevo destino
             agente.SetDestination(posiciones[indiceActual].position);
 
-            // Debugging para verificar qué está sucediendo
-            Debug.Log($"Destino alcanzado. Moviéndonos a la posición {indiceActual}: {posiciones[indiceActual].position}");
+            // Debugging para verificar quï¿½ estï¿½ sucediendo
+            Debug.Log($"Destino alcanzado. Moviï¿½ndonos a la posiciï¿½n {indiceActual}: {posiciones[indiceActual].position}");
         }
     }
 
