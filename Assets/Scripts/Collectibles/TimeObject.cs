@@ -20,6 +20,7 @@ public class TimeObject : MonoBehaviour
             GameManager.instance.hudCanvas.popup.ShowPopup($"-{scoreValue} segundos", "time");
             particles.Play();
             mesh.transform.localScale = Vector3.zero;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
             Invoke("Deactivate", particles.main.duration);
         }
 

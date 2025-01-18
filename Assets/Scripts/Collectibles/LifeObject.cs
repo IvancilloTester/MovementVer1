@@ -18,6 +18,7 @@ public class LifeObject : MonoBehaviour
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{lifeValue} vida", "life");
             particles.Play();
             mesh.transform.localScale = Vector3.zero;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
             Invoke("Deactivate", particles.main.duration);
         }
 

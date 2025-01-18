@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -17,6 +18,7 @@ public class HuesitoObject : MonoBehaviour
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{huesitoValue} huesito", "huesito");
             particles.Play();
             mesh.transform.localScale = Vector3.zero;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
             Invoke("Deactivate", particles.main.duration);
         }
 

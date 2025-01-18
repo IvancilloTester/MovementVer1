@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.ParticleSystem;
 
 public class ShieldObject : MonoBehaviour
 {
+    public ParticleSystem particles;
+    public GameObject mesh;
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -11,7 +15,16 @@ public class ShieldObject : MonoBehaviour
         {
             GameManager.instance.playerStats.ActivarShield();
             GameManager.instance.hudCanvas.popup.ShowPopup($"+1 escudo", "shield");
-            this.gameObject.SetActive(false);
+            particles.Play();
+            mesh.transform.localScale = Vector3.zero;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
+            Invoke("Deactivate", particles.main.duration);
         }
+
+    }
+
+    private void Deactivate()
+    {
+        this.gameObject.SetActive(false);
     }
 }

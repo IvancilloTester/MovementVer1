@@ -49,18 +49,19 @@ public class PlayerStats : MonoBehaviour
         if(shieldActive)
         {
             DesactivarShield();
+            MovePlayerToCheckpoint();
             return;
         }
-        CambiarVidas(-_vidas);
+        else
+        {
+            CambiarVidas(-_vidas);
+            MovePlayerToCheckpoint();
+        }
+
         if(vidasActuales <= 0)
         {
             gameOverScript.gameOver();
             Debug.Log("Game Over");
-        }
-        else
-        {
-            MovePlayerToCheckpoint();
-
         }
         
     }

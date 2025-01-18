@@ -17,6 +17,7 @@ public class StaminaObject : MonoBehaviour
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{staminaValue} stamina", "stamina");
             particles.Play();
             mesh.transform.localScale = Vector3.zero;
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
             Invoke("Deactivate",particles.main.duration);
         }
 
