@@ -28122,6 +28122,11 @@ MonoBehaviour:
   - {fileID: 474243266}
   - {fileID: 1433608167}
   jugador: {fileID: 916765969}
+  huesitoLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  dangerZone: {fileID: 2016535501}
+  animator: {fileID: 1781720809}
 --- !u!1001 &1144607300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46663,6 +46668,11 @@ Transform:
   - {fileID: 716096676}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1781720809 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7849365739590631473, guid: 9e92b996eb0581448b239e48f2dfdc24, type: 3}
+  m_PrefabInstance: {fileID: 5279724366191910933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1787537343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50092,6 +50102,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2491110980774449135, guid: 376be159ad302314eb396a7417632848, type: 3}
   m_PrefabInstance: {fileID: 2015979890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2016535501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7722659227042419030, guid: 9e92b996eb0581448b239e48f2dfdc24, type: 3}
+  m_PrefabInstance: {fileID: 5279724366191910933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2019802524
 GameObject:
@@ -59440,7 +59455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5399274276050405071, guid: 9e92b996eb0581448b239e48f2dfdc24, type: 3}
       propertyPath: m_Volume
-      value: 0.528
+      value: 0.633
       objectReference: {fileID: 0}
     - target: {fileID: 7849365739590631473, guid: 9e92b996eb0581448b239e48f2dfdc24, type: 3}
       propertyPath: m_Enabled

@@ -8,7 +8,7 @@ public class ThrowBone : MonoBehaviour
     public Transform attackPoint;
     public GameObject TirarHuesito;
 
-    public float throwCooldown;
+    public float throwCooldown = 1.0f;
 
     public KeyCode throwKey = KeyCode.Mouse0;
     public float throwforce;
@@ -35,14 +35,16 @@ public class ThrowBone : MonoBehaviour
         Rigidbody ProjectileRB = Projectile.GetComponent<Rigidbody>(); // Calcular la fuerza a añadir al huesito
         Vector3 forceToAdd = attackPoint.forward * throwforce + attackPoint.up * throwUpwardForce; 
         ProjectileRB.AddForce(forceToAdd, ForceMode.Impulse);
+        Destroy(Projectile, 2f);
         GameManager.instance.playerStats.RemoveHuesitos(totalThrows); 
         Invoke("ResetThrow", throwCooldown);
     }
 
     /* Indica que el huesito se puede volver a tirar */
-    private void ResetThrow() { 
+    private void ResetThrow() {
         readyToThrow = true ;
     }
+
 
     /* Si el personaje presiona el mouse, ya pasó el cooldown y hay huesitos disponibles,
        se puede tirar un hueso. En esta función se encuentra del Script player stats la 

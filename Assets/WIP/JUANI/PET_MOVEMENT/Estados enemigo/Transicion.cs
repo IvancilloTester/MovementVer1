@@ -1,5 +1,7 @@
 using UnityEngine;
 
+/* Define las transiciones entre estados de nuestra máquina de estados*/
+
 public class Transicion
 {
     public Condicion condicion;
