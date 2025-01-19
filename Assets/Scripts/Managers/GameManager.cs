@@ -2,11 +2,12 @@ using UnityEngine;
 using TMPro;
 using NUnit.Framework;
 using System.Collections.Generic;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public Camera mainCamera;
 
     public int targetFrameRate = 60;
 
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         playerStats.DesactivarShield();
         petController.transform.position = playerSpawn.position;
         highScore = PlayerPrefs.GetInt("highscore");
-
+        mainCamera = Camera.main;
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;

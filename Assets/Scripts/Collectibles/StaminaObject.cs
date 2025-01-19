@@ -6,13 +6,14 @@ public class StaminaObject : MonoBehaviour
     private int staminaValue;
     public ParticleSystem particles;
     public GameObject mesh;
-
+    public AudioSource sfx;
     private void OnTriggerEnter(Collider other)
     {
 
 
         if (other.GetComponent<CharacterController>() != null)
         {
+            sfx.Play();
             GameManager.instance.playerStats.AddStamina(staminaValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{staminaValue} stamina", "stamina");
             particles.Play();

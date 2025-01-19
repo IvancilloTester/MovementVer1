@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 /* En este estado, cuando el enemigo detecta que un huseito entra en su rango, se
    distrae y no detecta al jugador por 5 segundos*/
@@ -14,6 +15,8 @@ public class EstadoHuesito : Estado
     public CondicionHuesito condicionHuesito;
     public Animator animator;
     private AudioSource Barking, Smelling, Walking, Gasping;
+    private TextMeshProUGUI status;
+    public bool sonidoPlayed = false;
 
     public float tiempoEsperado = 5.0f;  // Tiempo que el agente espera con el huesito
     public float tiempoRestante;
@@ -26,7 +29,7 @@ public class EstadoHuesito : Estado
 
     public EstadoHuesito(Transform enemigo, float rango, LayerMask huesitoLayer, UnityEngine.AI.NavMeshAgent agent, 
                          GameObject dangerZone, Animator animator, AudioSource Barking, 
-                         AudioSource Smelling, AudioSource Walking, AudioSource Gasping)
+                         AudioSource Smelling, AudioSource Walking, AudioSource Gasping, TextMeshProUGUI status)
     {
         this.enemigo = enemigo;
         this.rango = rango;
@@ -40,15 +43,23 @@ public class EstadoHuesito : Estado
         this.Barking = Barking;
         this.Smelling = Smelling;
         this.condicionHuesito = new CondicionHuesito(enemigo, rango, huesitoLayer);
+        this.status = status;
     }
 
     public override void HacerAccion()
     {
+
+        if (!sonidoPlayed)
+        {
+
+            Smelling.Play();
+            Walking.Stop();
+            Gasping.Stop();
+            Barking.Stop();
+            sonidoPlayed = true;
+        }
         animator.SetInteger("Cambios", 0);
-        Smelling.Play();
-        Walking.Stop();
-        Gasping.Stop();
-        Barking.Stop();
+        status.text = "???";
         /* Si la condición se cumple*/
         if (condicionHuesito.Comprobar()) {
             Debug.Log("El enemigo está distraído con el huesito.");
@@ -61,6 +72,7 @@ public class EstadoHuesito : Estado
                 dangerZone.SetActive(true);
                 agent.isStopped = false;
                 Debug.Log("Se esperaron 5 segundos. Regresando a Patrulla.");
+                sonidoPlayed = false;
             }
         }
     }

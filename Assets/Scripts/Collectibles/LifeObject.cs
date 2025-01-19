@@ -8,12 +8,13 @@ public class LifeObject : MonoBehaviour
     private int lifeValue;
     public ParticleSystem particles;
     public GameObject mesh;
-
+    public AudioSource sfx;
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.GetComponent<CharacterController>() != null)
         {
+            sfx.Play();
             GameManager.instance.playerStats.AddVidas(lifeValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{lifeValue} vida", "life");
             particles.Play();

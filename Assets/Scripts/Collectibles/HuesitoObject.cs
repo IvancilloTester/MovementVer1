@@ -8,12 +8,14 @@ public class HuesitoObject : MonoBehaviour
     private int huesitoValue;
     public ParticleSystem particles;
     public GameObject mesh;
+    public AudioSource sfx;
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.GetComponent<CharacterController>() != null)
         {
+            sfx.Play();
             GameManager.instance.playerStats.AddHuesitos(huesitoValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"+{huesitoValue} huesito", "huesito");
             particles.Play();

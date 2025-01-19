@@ -10,12 +10,13 @@ public class TimeObject : MonoBehaviour
     private float scoreValue;
     public ParticleSystem particles;
     public GameObject mesh;
-
+    public AudioSource sfx;
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.GetComponent<CharacterController>() != null)
         {
+            sfx.Play();
             GameManager.instance.levelTimer.RemoveTime(scoreValue);
             GameManager.instance.hudCanvas.popup.ShowPopup($"-{scoreValue} segundos", "time");
             particles.Play();

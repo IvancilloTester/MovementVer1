@@ -12,7 +12,6 @@ public class DamageObject : MonoBehaviour
         if (other.GetComponent<CharacterController>() != null)
         {
             GameManager.instance.playerStats.RemoveVidas(damageValue);
-            this.gameObject.SetActive(false);
         }
 
     }

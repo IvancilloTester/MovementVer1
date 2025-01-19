@@ -6,13 +6,14 @@ public class ShieldObject : MonoBehaviour
 {
     public ParticleSystem particles;
     public GameObject mesh;
-
+    public AudioSource sfx;
     private void OnTriggerEnter(Collider other)
     {
 
 
         if (other.GetComponent<CharacterController>() != null)
         {
+            sfx.Play();
             GameManager.instance.playerStats.ActivarShield();
             GameManager.instance.hudCanvas.popup.ShowPopup($"+1 escudo", "shield");
             particles.Play();

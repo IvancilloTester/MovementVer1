@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using TMPro;
 
 /* Máquina de estados en la que se realizan todos los cambios de estados y se observa que se cumplan todas las condiciones*/
 
@@ -14,6 +15,7 @@ public class MaquinaEstados : MonoBehaviour
     public GameObject dangerZone;
     public Animator animator;
     private AudioSource Barking, Smelling, Walking, Gasping;
+    public TextMeshProUGUI statusText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,16 +30,16 @@ public class MaquinaEstados : MonoBehaviour
         listaJugador.Add(jugador);
 
         /* ESTADOS */
-        EstadoPatrulla patrulla = new EstadoPatrulla(agente, posiciones, animator, Barking, Smelling, Walking, Gasping);
-        EstadoSeguirJugador seguirJugador = new EstadoSeguirJugador(agente, jugador, animator, Barking, Smelling, Walking, Gasping);
-        EstadoDetectar vuelveCheckpoint = new EstadoDetectar(agente, animator, Barking, Smelling, Walking, Gasping);
+        EstadoPatrulla patrulla = new EstadoPatrulla(agente, posiciones, animator, Barking, Smelling, Walking, Gasping, statusText);
+        EstadoSeguirJugador seguirJugador = new EstadoSeguirJugador(agente, jugador, animator, Barking, Smelling, Walking, Gasping, statusText);
+        EstadoDetectar vuelveCheckpoint = new EstadoDetectar(agente, animator, Barking, Smelling, Walking, Gasping, statusText);
         EstadoHuesito interactuarHuesito = new EstadoHuesito(transform, 3f, huesitoLayer, agente, dangerZone, 
-                                                             animator, Barking, Smelling, Walking, Gasping);
+                                                             animator, Barking, Smelling, Walking, Gasping, statusText);
 
         /* CONDICIONES */
-        CondicionCerca condicionCerca = new CondicionCerca(4, jugador, transform);
-        CondicionFueraRango condicionFueraRango = new CondicionFueraRango(4, jugador, transform);
-        CondicionDetectar condicionDetectar = new CondicionDetectar(2.5f, jugador, transform);
+        CondicionCerca condicionCerca = new CondicionCerca(3f, jugador, transform);
+        CondicionFueraRango condicionFueraRango = new CondicionFueraRango(3, jugador, transform);
+        CondicionDetectar condicionDetectar = new CondicionDetectar(1.5f, jugador, transform);
         CondicionRealizada condicionRealizada = new CondicionRealizada(vuelveCheckpoint);
         CondicionHuesito condicionHuesito = new CondicionHuesito(transform, 3f, huesitoLayer);
         CondicionPatrulla condicionRegresoPatrulla = new CondicionPatrulla(interactuarHuesito);
