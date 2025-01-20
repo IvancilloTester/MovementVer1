@@ -59,6 +59,7 @@ public class EstadoHuesito : Estado
             sonidoPlayed = true;
         }
         animator.SetInteger("Cambios", 0);
+        agent.speed = 1f;
         status.text = "???";
         /* Si la condición se cumple*/
         if (condicionHuesito.Comprobar()) {

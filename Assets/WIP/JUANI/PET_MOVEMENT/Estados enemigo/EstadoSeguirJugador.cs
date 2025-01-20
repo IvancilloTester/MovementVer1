@@ -42,6 +42,7 @@ public class EstadoSeguirJugador : Estado
 
         /* Actualiza continuamente el destino del agente hacia el jugador */
         agente.SetDestination(jugador.position);
+        agente.speed = 2.5f;
         sonidoPlayed = false;
     }
 }

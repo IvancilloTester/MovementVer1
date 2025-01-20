@@ -38,7 +38,7 @@ public class EstadoPatrulla : Estado
 
         if (!sonidoPlayed)
         {
-
+            
             Walking.Play();
             Gasping.Play();
             Barking.Stop();
@@ -47,7 +47,7 @@ public class EstadoPatrulla : Estado
         }
         status.text = "...";
         animator.SetInteger("Cambios", 1);
-
+        agente.speed = 1f;
         /* Para verificar que ya se haya llegado a cada destino */
         if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance) {
             

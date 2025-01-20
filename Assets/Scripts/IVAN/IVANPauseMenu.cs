@@ -13,7 +13,7 @@ public class IVANPauseMenu : MonoBehaviour
     
     public void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKeyUp(KeyCode.Escape))
         {
             if(isPaused)
             {

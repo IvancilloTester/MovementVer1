@@ -45,7 +45,7 @@ public class EstadoDetectar : Estado
         if (!accionRealizada) { /* Si la acción ya se hizo una vez, que no se haga muchas veces más*/
             agente.isStopped = true;
             animator.SetInteger("Cambios", 2);
-
+            agente.speed = 1f;
             temporizador += Time.deltaTime;  
 
             if (temporizador >= tiempoEspera)  /* Verificar si han pasado 2 segundos */
